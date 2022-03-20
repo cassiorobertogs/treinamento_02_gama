@@ -17,25 +17,32 @@ public class Ex03Ebook {
 	private String autor;
 	private int numeroDePaginas;
 	private int paginaAtual;
-
+	private double porcentagemDeLeitura;
+	
 	public Ex03Ebook(String titulo, String autor, int numeroDePaginas, int paginaAtual) {
 		super();
 		this.titulo = titulo;
 		this.autor = autor;
-		if (numeroDePaginas > 0) {
+		if (numeroDePaginas >= 1) {
 			this.numeroDePaginas = numeroDePaginas;
 		}
 		if (paginaAtual > 0) {
 			this.paginaAtual = paginaAtual;
 		}
+		this.porcentagemDeLeitura = porcentagemDeLeitura;
 	}// fim do construtor
 
 	public void avancaPagina() {
-		this.paginaAtual += 1;
+		if(paginaAtual < numeroDePaginas) {
+			this.paginaAtual += 1;
+		}
+		
 	}
 
 	public void retrocedePagina() {
+		if(paginaAtual > 0) {
 		this.paginaAtual -= 1;
+		}
 	}
 
 	public void irParaPagina(int irParaPagina) {
@@ -46,4 +53,17 @@ public class Ex03Ebook {
 	public int getPaginaAtual(){
 		return this.paginaAtual;
 	}
+	public void porcentagemDeLeitura() {
+		this.porcentagemDeLeitura = (double) (numeroDePaginas * paginaAtual) / 100; 
+	}
+	
+	public void setNumeroDePaginas(int numeroDePaginas) {
+		this.numeroDePaginas = numeroDePaginas;
+	}
+	public void mostraDados() {
+		System.out.println("O livro atual é: "+titulo+", de "+autor+", você está na página "+paginaAtual+" de "+numeroDePaginas+
+				" paginas, "+"você já leu "+porcentagemDeLeitura+" de seu livro.");
+	}
+	
+	
 }// fim class
